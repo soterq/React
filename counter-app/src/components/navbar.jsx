@@ -1,13 +1,7 @@
 import React, { Component } from 'react';
 // import {BroswerRoute as Route , Switch, Link , Redirect, Router} from 'react-router-dom';
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Link
-} from "react-router-dom";
+import {Link} from "react-router-dom";
 
-//Pages
 import App from '../App'
 import TaskList from './taskList'
 
@@ -15,38 +9,42 @@ class NavBar extends Component {
  
   render() { 
     const navStyle ={
-      color: 'white'
+      color: 'black'
   
     };
     return (
-    <Router>  
-      <nav class="navbar navbar-expand-lg navbar-light bg-light" >
-      <a class="navbar-brand" href="#">Navbar</a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
+      <nav className="navbar navbar-expand-lg navbar-light bg-light" >
+      <h1>Nav Bar</h1>
+      <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span className ="navbar-toggler-icon"></span>
       </button>
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav">
-          <li class="nav-item active">
-       
-          <button class="btn btn-outline-success" type="button">
-            <Link style={navStyle}
-            to="/home">Home</Link>
-            </button>
-
+      <div className="collapse navbar-collapse" id="navbarNav">
+        <ul className="navbar-nav">
+        <Link style={navStyle}to="/home">
+          <li className="nav-item active">
+          {/* <button className="btn btn-outline-success" type="button"> */}
+            {/* </button> */}
+            Home
           </li>
+         </Link>
+        <Link style={navStyle}to="/tasklist">
+          <li className="nav-item active">
+          {/* <button className="btn btn-outline-success" type="button"> */}
+            {/* </button> */}
+            TaskList
+          </li>
+         </Link>
+         <Link style={navStyle}to="/spender">
+          <li className="nav-item active">
+          {/* <button className="btn btn-outline-success" type="button"> */}
+            {/* </button> */}
+            Spender
+          </li>
+         </Link>
          
         </ul>
       </div>
     </nav>
-
-
-      <Switch>
-      <Route exact path="/home" component ={App}></Route>
-   
-      </Switch>
-    </Router>
-  
   
   );
   }
