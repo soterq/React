@@ -2,66 +2,31 @@ import React, { Component } from 'react';
 import NavBar from './components/navbar';
 import './App.css';
 import Counters from './components/counters';
-
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+} from "react-router-dom";
+import TaskList from './components/taskList'
+import Spender from './components/spender'
+import Program from './components/program'
 class App extends Component {
-  state = {  
-    counters: [
-        {id: 1 , value: 4},
-        {id: 2 , value: 0},
-        {id: 3 , value: 0},
-        {id: 4 , value: 0},
-        ]
-        };
-    
-        // constructor(){
-        //   super();
 
-        // }
-
-
-    handleIncrement = counter => {
-        const counters = [...this.state.counters];
-        const index = counters.indexOf(counter);
-        counters[index] = {...counter};
-        counters[index].value++;
-        this.setState({ counters });
-    
-    }
-   
-    handleReset = () =>{
-           const counters = this.state.counters.map(c=>{
-                c.value = 0;
-                return c;
-            })
-            this.setState({counters});
-        }
-    
-    handeDelete = counterId =>{
-        const counters = this.state.counters.filter(c => c.id !== counterId);
-        this.state.counters = counters;
-        this.setState({ counters });
-
-    }
-
-    handleAdd = () =>{
-      const counters = [...this.state.counters,{id:this.state.counters.length + 1 , value:0}]
-    this.setState({ counters });
-}
 
   render() { 
     return (
-      <React.Fragment>
-      <NavBar totalCounters = {this.state.counters.filter(c => c.value >0).length} />
-      <main className="container">
-      <Counters  
-        counters={this.state.counters}
-        onReset={this.handleReset} 
-        onIncrement = {this.handleIncrement} 
-        onDelete = {this.handeDelete}
-        onAdd={this.handleAdd}
-        />
-      </main>
-      </React.Fragment>
+      // <React.Fragment>
+        <Router>
+            <NavBar /*totalCounters = {this.state.counters.filter(c => c.value >0).length}*/ 
+            />
+              <Switch>
+              <Route path="/home" component ={Program}></Route>
+                  <Route path="/tasklist" component ={TaskList}></Route>
+                  <Route path="/spender" component ={Spender}></Route>
+              </Switch>
+    </Router>
+
+      // {/* </React.Fragment> */
     );
     }
  }
