@@ -14,8 +14,13 @@ import TaskList from './taskList'
 class NavBar extends Component {
  
   render() { 
-    return (   <Router>
-      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    const navStyle ={
+      color: 'white'
+  
+    };
+    return (
+    <Router>  
+      <nav class="navbar navbar-expand-lg navbar-light bg-light" >
       <a class="navbar-brand" href="#">Navbar</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -25,32 +30,22 @@ class NavBar extends Component {
           <li class="nav-item active">
        
           <button class="btn btn-outline-success" type="button">
-            <Link to="/">Home</Link>
+            <Link style={navStyle}
+            to="/home">Home</Link>
             </button>
 
           </li>
-          {/* <li class="nav-item">
-             <button class="btn btn-outline-success" type="button">
-            <Link to="/taskList">TaskList</Link>
-            </button>
-
-          </li> */}
+         
         </ul>
       </div>
     </nav>
-      <Switch>
-      <Route exact path="/" component ={App}></Route>
-      {/* <Route exact path="/taskList" component ={TaskList}></Route> */}
 
+
+      <Switch>
+      <Route exact path="/home" component ={App}></Route>
+   
       </Switch>
     </Router>
-  
-  
-    // <nav className="navbar navbar-light bg-light">
-    //   <a className="navbar-brand" href="#">
-    // Navbar <span className="badge badge-pill badge-secondary">{totalCounters}</span>
-    // </a>
-    // </nav>
   
   
   );
@@ -58,16 +53,3 @@ class NavBar extends Component {
 }
  
 export default NavBar
-// ;
-
-// //Stateless Functional Component
-// const NavBar = ({ totalCounters }) =>{
-//   return ( 
-  
-   
-//   );
-// };
-
-
-// export default NavBar
-// ;
