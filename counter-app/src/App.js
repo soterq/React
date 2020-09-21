@@ -13,10 +13,10 @@ class App extends Component {
         ]
         };
     
-        constructor(){
-          super();
+        // constructor(){
+        //   super();
 
-        }
+        // }
 
 
     handleIncrement = counter => {
