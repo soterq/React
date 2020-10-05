@@ -10,6 +10,7 @@ import {
 import TaskList from './components/taskList'
 import Spender from './components/spender'
 import Program from './components/program'
+import TaskForm from './components/taskForm'
 class App extends Component {
 
 
@@ -23,6 +24,7 @@ class App extends Component {
               <Route path="/home" component ={Program}></Route>
                   <Route path="/tasklist" component ={TaskList}></Route>
                   <Route path="/spender" component ={Spender}></Route>
+                  <Route path="/taskForm" component ={TaskForm}></Route>
               </Switch>
     </Router>
 
