@@ -13,32 +13,32 @@ class Program extends Component {
         
     
         handleIncrement = counter => {
-            const counters = [...this.state.counters];
-            const index = counters.indexOf(counter);
-            counters[index] = {...counter};
-            counters[index].value++;
-            this.setState({ counters });
+            const newCounters = [...this.state.counters];
+            const index = newCounters.indexOf(counter);
+            newCounters[index] = {...counter};
+            newCounters[index].value++;
+            this.setState({ ...newCounters });
         
         }
        
         handleReset = () =>{
-               const counters = this.state.counters.map(c=>{
+               const newCounters = this.state.counters.map(c=>{
                     c.value = 0;
                     return c;
                 })
-                this.setState({counters});
+                this.setState({...newCounters});
             }
         
         handeDelete = counterId =>{
-            const counters = this.state.counters.filter(c => c.id !== counterId);
-            this.state.counters = counters;
-            this.setState({ counters });
+            const newCounters = this.state.counters.filter(c => c.id !== counterId);
+            // this.state.counters = counters;
+            this.setState({ ...newCounters });
     
         }
     
         handleAdd = () =>{
-          const counters = [...this.state.counters,{id:this.state.counters.length + 1 , value:0}]
-        this.setState({ counters });
+          const newCounters = [...this.state.counters,{id:this.state.counters.length + 1 , value:0}]
+        this.setState({ ...newCounters });
     }
     render() { 
         return (

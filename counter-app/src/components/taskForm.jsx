@@ -1,31 +1,52 @@
-import React, { Component } from 'react';
-class TaskForm
- extends Component {
+import React from 'react';
 
+class TaskForm
+ extends React.Component {
+  constructor(props) {
+    super();
+    this.state = { title: '' ,
+    description :'',
+    severity:''
+  };
+  }
+
+  handleChange = (event) => {
+    this.setState({[event.target.name]: event.target.value});
+  }
+
+handleSubmit = (event) => {
+  fetch('http://localhost:8080/api/v1/tasks', {
+            method: 'POST',
+            // We convert the React state to JSON and send it as the POST body
+            body: this.state
+          }).then(function(response) {
+            console.log(response)
+            return response.json();
+          });
+}
     render() { 
         return (<div className="container">
-        <form>
-  <div class="form-group">
-  <label for="title">Title</label>
-    <input class="form-control" id="title" rows="3"></input>
-  </div>
-  <div class="form-group">
-  <div className="container" />
-    <label for="exampleFormControlSelect2">Severity</label>
-    <select name="cars" id="severitylevel" className="severity-Block">
-    <option value="volvo">1</option>
-    <option value="saab">2</option>
-    <option value="opel">3</option>
-  
-  </select>
-  </div>
-  <div class="form-group">
-    <label for="exampleFormControlTextarea1">Description</label>
-    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-  </div>
-  <button type="submit" class="btn btn-primary">Submit</button>
-</form>
-        </div>  );
+        <form autocomplete="off" onSubmit={this.handleSubmit}>
+          <div className="form-group">
+            <label for="title">Title</label>
+              <input className="form-control" id="title" type="text" value={this.state.value} name="title" onChange={this.handleChange} />
+          </div>
+          <div className="form-group">
+            <div className="container" />
+              <label for="exampleFormControlSelect2">Severity</label>
+                <select id="severitylevel" className="severity-Block" name="severity" onChange={this.handleChange}>
+                  <option value="0">Low</option>
+                  <option value="1">Medium</option>
+                  <option value="2">High</option>
+                </select>
+            </div>
+         <div className="form-group">
+          <label for="exampleFormControlTextarea1">Description</label>
+            <textarea className="form-control" id="exampleFormControlTextarea1" rows="3" name="description" onChange={this.handleChange}></textarea>
+        </div>
+        <button type="submit" className="btn btn-primary">Submit</button>
+      </form>
+    </div> );
     }
 }
  
